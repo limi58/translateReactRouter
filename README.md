@@ -1,5 +1,3 @@
-# translateReactRouter
-react-router 中文翻译
 # API Reference
 
 * [Components](#components)
@@ -104,56 +102,53 @@ function createElement(Component, props) {
 当 route 被激活的时候要应用的样式。
 
 ##### `onClick(e)`
-一个提供给点击事件的自定义处理器。 Works just like a handler on an `<a>` tag - calling `e.preventDefault()` will prevent the transition from firing, while `e.stopPropagation()` will prevent the event from bubbling.
+一个提供给点击事件的自定义处理器。 就像在 `<a>` 标签工作一样 - 调用 `e.preventDefault()` 将组织转变事件发生, 当调用 `e.stopPropagation()` 将阻止冒泡事件。
 
 ##### *others*
-You can also pass props you'd like to be on the `<a>` such as a `title`, `id`, `className`, etc.
+你可以传入你喜欢的属性在 `<a>` 上比如： `title`, `id`, `className`, 等等。
 
 #### Example
-Given a route like `<Route path="/users/:userId" />`:
+提供一个 route 如 `<Route path="/users/:userId" />`:
 
 ```js
 <Link to={`/users/${user.id}`} activeClassName="active">{user.name}</Link>
 // becomes one of these depending on your History and if the route is
-// active
+// 激活时
 <a href="/users/123" class="active">Michael</a>
 <a href="#/users/123">Michael</a>
 
-// change the activeClassName
+// 改变 activeClassName
 <Link to={`/users/${user.id}`} activeClassName="current">{user.name}</Link>
 
-// change style when link is active
+// 当链接激活时改变样式
 <Link to="/users" style={{color: 'white'}} activeStyle={{color: 'red'}}>Users</Link>
 ```
 
 ### IndexLink
-Docs coming so soon!
+文档正在制作！
 
 ### RoutingContext
-A `<RoutingContext>` renders the component tree for a given router state and sets the history object and the current location in context.
+文档正在制作！
 
 
 
-## Configuration Components
+## 组件配置
 
 ## Route
-A `Route` is used to declaratively map routes to your application's
-component hierarchy.
+`Route` 用来在你的应用组件层级里声明 routes 映射
 
-#### Props
+#### 属性
 ##### `path`
-The path used in the URL.
+用在 URL.
 
-It will concat with the parent route's path unless it starts with `/`,
-making it an absolute path.
+它将和父路由的 path 合并除非以 `/`开始,这将用于绝对路径.
 
-**Note**: Absolute paths may not be used in route config that is [dynamically loaded](/docs/guides/advanced/DynamicRouting.md).
+**注意**: 绝对路径可能不能用在动态路由配置里 [dynamically loaded](https://github.com/rackt/react-router/blob/master/docs/guides/advanced/DynamicRouting.md).
 
-If left undefined, the router will try to match the child routes.
+如果左边为 undefined，路由器将试图匹配子路由.
 
 ##### `component`
-A single component to be rendered when the route matches the URL. It can
-be rendered by the parent route component with `this.props.children`.
+当路由匹配 URL 时，单个组件将被渲染。它可以被带有 `this.props.children`的父级路由渲染。
 
 ```js
 const routes = (
@@ -176,9 +171,8 @@ class App extends React.Component {
 ```
 
 ##### `components`
-Routes can define multiple components as an object of `name:component`
-pairs to be rendered when the path matches the URL. They can be rendered
-by the parent route component with `this.props.children[name]`.
+当 path 匹配 URL 时，以对象 `name:component` 定义的多个路由组件将被渲染。他们会被带有
+ `this.props.children[name]` 的父级路由组件渲染。
 
 ```js
 // think of it outside the context of the router, if you had pluggable

@@ -1,3 +1,6 @@
+# react-router API 中文翻译
+[米不过分](http://www.imbgf.com)
+
 # API Reference
 
 * [Components](#components)
@@ -309,21 +312,21 @@ let myRoute = {
 
 
 ## Redirect
-A `<Redirect>` sets up a redirect to another route in your application to maintain old URLs.
+`<Redirect>` 在你的应用设置一个重定向到其他路由以维护之前的 URLs.
 
-#### Props
+#### 属性
 ##### `from`
-The path you want to redirect from, including dynamic segments.
+你想重定向的路径, 可以包含动态片段.
 
 ##### `to`
-The path you want to redirect to.
+你想重定向到的路径.
 
 ##### `query`
-By default, the query parameters will just pass through but you can specify them if you need to.
+默认情况, 查询参数将会通过不过你可以根据需要去指定他们.
 
 ```js
-// Say we want to change from `/profile/123` to `/about/123`
-// and redirect `/get-in-touch` to `/contact`
+// 我们想改变从 `/profile/123` 到 `/about/123`
+// 并且重定向 `/get-in-touch` 到 `/contact`
 <Route component={App}>
   <Route path="about/:userId" component={UserProfile}/>
   {/* /profile/123 -> /about/123 */}
@@ -331,7 +334,7 @@ By default, the query parameters will just pass through but you can specify them
 </Route>
 ```
 
-Note that the `<Redirect>` can be placed anywhere in the route hierarchy, though [normal precedence](/docs/guides/basics/RouteMatching.md#precedence) rules apply. If you'd prefer the redirects to be next to their respective routes, the `from` path will match the same as a regular route `path`.
+注意 `<Redirect>` 可以在路由层级里随意放置, 通过 [normal precedence](/docs/guides/basics/RouteMatching.md#precedence) 来应用规则. 如果你喜欢重定向到旁边的路由,  `from` 路径将匹配常规的 `path`.
 
 ```js
 <Route path="course/:courseId">

@@ -220,53 +220,51 @@ class Users extends React.Component {
 }
 ```
 ##### `getComponent(location, callback)`
-Same as `component` but asynchronous, useful for
-code-splitting.
+和 `component` 一样，但是是异步的，有助于代码分割.
 
 ###### `callback` signature
 `cb(err, component)`
 
 ```js
 <Route path="courses/:courseId" getComponent={(location, cb) => {
-  // do asynchronous stuff to find the components
+  // 为了去找组件去做一些异步的东东
   cb(null, Course)
 }}/>
 ```
 
 ##### `getComponents(location, callback)`
-Same as `components` but asynchronous, useful for
-code-splitting.
+和 `components` 一样，但是是异步的，有助于代码分割.
 
 ###### `callback` signature
 `cb(err, components)`
 
 ```js
 <Route path="courses/:courseId" getComponent={(location, cb) => {
-  // do asynchronous stuff to find the components
+  // 为了去找组件去做一些异步的东东
   cb(null, {sidebar: CourseSidebar, content: Course})
 }}/>
 ```
 
 ##### `children`
-Routes can be nested, `this.props.children` will contain the element created from the child route component. Please refer to the [Route Configuration](/docs/guides/basics/RouteConfiguration.md) since this is a very critical part of the router's design.
+路由可以被嵌套, `this.props.children` 将从子路由组件去包含元素. 请参考 [Route Configuration](/docs/guides/basics/RouteConfiguration.md) 因为这个是个非常重要的路由设计部分.
 
 ##### `onEnter(nextState, replaceState)`
-Called when a route is about to be entered. It provides the next router state and a function to redirect to another path.
+在路由即将进入时被调用. 它提供下一个路由器的状态和重定向到其他路径的方法.
 
 ##### `onLeave()`
-Called when a route is about to be exited.
+在路由即将离开的时候被调用.
 
 
 
 ## PlainRoute
-A plain JavaScript object route definition. `Router` turns JSX `<Route>`s into these objects, but you can use them directly if you prefer. All of the props are the same as `<Route>` props, except those listed here.
+用纯 javascript 对象的方式去定义路由. `Router` 会转换 JSX `<Route>`s 为这些对象, 不过你喜欢的话可以直接用它. 它所有的属性和 `<Route>` 一样, 除了下面列出的.
 
-#### Props
+#### 属性
 ##### `childRoutes`
-An array of child routes, same as `children` in JSX route configs.
+一个路由的数组, 在 jsx 和 `children` 一样.
 
 ##### `getChildRoutes(location, callback)`
-Same as `childRoutes` but asynchronous and receives the `location`. Useful for code-splitting and dynamic route matching (given some state or session data to return a different set of child routes).
+和 `childRoutes` 相同，但是是异步的而且接受参数 `location`. 有助于代码分割和动态路由匹配 (提供一些状态或者会话数据去返回一个子路由).
 
 ###### `callback` signature
 `cb(err, routesArray)`

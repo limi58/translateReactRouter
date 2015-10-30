@@ -1,4 +1,5 @@
 # react-router API 中文翻译
+一个一个词手工翻译的，只为熟悉文档，因此建议不以此作参考，具体请参考[官方文档](https://github.com/rackt/react-router/blob/master/docs/API.md)  
 [米不过分](http://www.imbgf.com)
 
 # API Reference
@@ -347,64 +348,59 @@ let myRoute = {
 
 
 ## IndexRoute
-Index Routes allow you to provide a default "child" to a parent
-route when visitor is at the URL of the parent, they provide convention
-for `<IndexLink>` to work.
+当访问者在父级路由的时候索引路由允许提供一个默认的 "child" 给父级路由, 它提供一个方便的 `<IndexLink>` 去工作.
 
-Please see the [Index Routes guide](/docs/guides/basics/IndexRoutes.md).
+请查看 [Index Routes guide](/docs/guides/basics/IndexRoutes.md).
 
-#### Props
-All the same props as [Route](#route) except for `path`.
+#### 属性
+所有属性和 [Route](#route) 一样除了 `path`.
 
 ##### `getIndexRoute(location, callback)`
-Same as `IndexRoute` but asynchronous, useful for
-code-splitting.
+和 `IndexRoute` 一样，不过是异步的，有助于代码分割.
 
 ###### `callback` signature
 `cb(err, component)`
 
 ```js
 <Route path="courses/:courseId" getIndexRoute={(location, cb) => {
-  // do asynchronous stuff to find the index route
+  // 为了寻找索引路由去做一些异步的东东
   cb(null, Index)
 }}/>
 ```
 
 
 ## IndexRedirect
-Index Redirects allow you to redirect from the URL of a parent route to another
-route. They can be used to allow a child route to serve as the default route
-for its parent, while still keeping a distinct URL.
+索引重定向允许你从父级路由 URL 到其他路由. 它被用来允许子路由去提供默认路由给父级，然而仍然保持不同的 URL.
 
-Please see the [Index Routes guide](/docs/guides/basics/IndexRoutes.md).
+具体请查看 [Index Routes guide](/docs/guides/basics/IndexRoutes.md).
 
-#### Props
-All the same props as [Redirect](#redirect) except for `from`.
+#### 属性
+和 [Redirect](#redirect) 一样除了 `from`.
 
 
 
 ## Handler Components
-A route's handler component is rendered when that route matches the URL. The router will inject the following properties into your component when it's rendered:
+当路由匹配 URL 的时候，路由处理器组件将被渲染. 当其渲染的时候将允许以下的属性注入:
 
 #### `isTransitioning`
-A boolean value that is `true` when the router is transitioning, `false` otherwise.
+当路由器转变的时候，布尔值为 `true` , `false` 同理.
 
 #### `location`
-The current [location](https://github.com/rackt/history/blob/master/docs/Location.md).
+当前的 [location](https://github.com/rackt/history/blob/master/docs/Location.md).
 
 #### `params`
-The dynamic segments of the URL.
+URL 的动态片段.
 
 #### `route`
-The route that rendered this component.
+被渲染的组件的路由.
 
 #### `routeParams`
-A subset of `this.props.params` that were directly specified in this component's route. For example, if the route's path is `users/:userId` and the URL is `/users/123/portfolios/345` then `this.props.routeParams` will be `{userId: '123'}`, and `this.props.params` will be `{userId: '123', portfolioId: 345}`.
+直接指定这个组件的路由 `this.props.params` 的子集. 举个例子, 如果你路由路径是 `users/:userId` 并且 URL 是 `/users/123/portfolios/345` 然后 `this.props.routeParams` 将为 `{userId: '123'}`, 并且 `this.props.params` 将为 `{userId: '123', portfolioId: 345}`.
 
 #### `children`
-The matched child route elements to be rendered.
+匹配将被渲染的子路由元素.
 
-##### Example
+##### 例子
 ```js
 render((
   <Router history={history}>
@@ -428,9 +424,9 @@ class App extends React.Component {
 ```
 
 ### Named Components
-When a route has multiple components, the child elements are available by name on `this.props.children`. All route components can participate in the nesting.
+当路由有多个组件的时候, 命名为 `this.props.children` 的子元素将可用. 在嵌套里所有路由组件将会一起参与.
 
-#### Example
+#### 例子
 ```js
 render((
   <Router>
@@ -479,68 +475,68 @@ class Users extends React.Component {
 
 ## Mixins
 
-## Lifecycle Mixin
-Adds a hook to your component instance that is called when the router is about to navigate away from the route the component is configured on, with the opportunity to cancel the transition. Mostly useful for forms that are partially filled out.
+## Mixin 生命周期
+在你的组件实例上添加一个钩子，他将在路由准备改变时被调用, 可以在适当时期取消路由改变. 大多数用在填写部分表单时.
 
-On standard transitions, `routerWillLeave` receives a single argument: the `location` we're transitioning to. To cancel the transition, return false.
+在标准转变中, `routerWillLeave` 接受一个参数: 我们要转到的 `location`. 返回 false 可以取消转变.
 
-To prompt the user for confirmation, return a prompt message (string). `routerWillLeave` does not receive a location object during the beforeunload event in web browsers (assuming you're using the `useBeforeUnload` history enhancer). In this case, it is not possible for us to know the location we're transitioning to so `routerWillLeave` must return a prompt message to prevent the user from closing the tab.
+为了提示用户去确认，应该返回一个字符串消息. 如果浏览器处在 beforeunload 事件， `routerWillLeave` 将不会接受 location 对象 (假设你正在使用 `useBeforeUnload` history enhancer). 在此情形, 我们是不可能知道我们过渡到的位置，所以`routerWillLeave`必须返回一个提示消息,以防止用户关闭选项卡.
 
-#### Lifecycle Methods
+#### Methods 生命周期
 ##### `routerWillLeave(nextLocation)`
-Called when the router is attempting to transition away from the route that rendered this component.
+在路由器试图转变的时候被调用.
 
-##### arguments
-- `nextLocation` - the next location
+##### 参数
+- `nextLocation` - 下一个地址
 
 
 
 ## History Mixin
-Adds the router's `history` object to your component instance.
+添加一个路由器 `history` 对象在你的组件实例里.
 
-**Note**: You do not need this mixin for route components, it's already available as `this.props.history`. This is for components deeper in the render tree that need access to the router's `history` object.
+**注意**: 你不需要给路由组件去提供一个mixin, 因为 `this.props.history` 完全可用. This is for components deeper in the render tree that need access to the router's history object..
 
-#### Methods
+#### 方法
 ##### `pushState(state, pathname, query)`
-Transitions to a new URL.
+转到新的 URL.
 
-###### arguments
-- `state` - the location state.
-- `pathname` - the full URL with or without the query.
-- `query` - an object that will be stringified by the router.
+###### 参数
+- `state` - 地址状态.
+- `pathname` - 完整的 URL 或者是去除参数的 URL.
+- `query` - 将被路由器序列化的对象.
 
 ##### `replaceState(state, pathname, query)`
-Replaces the current URL with a new one, without affecting the length of the history (like a redirect).
+用新的地址取代当前的, 不影响 history 的长度 (像重定向).
 
-###### arguments
-- `state` - the location state.
-- `pathname` - the full URL with or without the query.
-- `query` - an object that will be stringified by the router.
+###### 参数
+- `state` - 地址状态.
+- `pathname` - 完整的 URL 或者是去除参数的 URL.
+- `query` - 将被路由器序列化的对象.
 
 ##### `go(n)`
-Go forward or backward in the history by `n` or `-n`.
+在历史记录中前进或者后退，通过这个： `n` or `-n`.
 
 ##### `goBack()`
-Go back one entry in the history.
+在历史记录中后退一步.
 
 ##### `goForward()`
-Go forward one entry in the history.
+在历史记录中前进一步.
 
 ##### `createPath(pathname, query)`
-Stringifies the query into the pathname, using the router's config.
+用路由器的配置序列化参数到路径名里.
 
 ##### `createHref(pathname, query)`
-Creates a URL, using the router's config. For example, it will add `#/` in front of the `pathname` for hash history.
+哟个路由器的配置创建一个 URL. 例如, 给 hash history 之前加上一个 `#/`.
 
 ##### `isActive(pathname, query, indexOnly)`
-Returns `true` or `false` depending on if the current path is active. Will be true for every route in the route branch matched by the `pathname` (child route is active, therefore parent is too), unless `indexOnly` is specified, in which case it will only match the exact path.
+返回 `true` 或 `false` 取决于当前路径是否被激活. 在每个路由将当路由分支匹配 `pathname` 时每个这个路由都将为 true(子路由被激活了，所以父级也将被激活), 除非 `indexOnly` 被指定, 在这个情况下将只匹配精确的路径.
 
-###### arguments
-- `pathname` - the full URL with or without the query.
-- `query` - if specified, an object containing key/value pairs that must be active in the current query - explicit `undefined` values require the corresponding key to be missing or `undefined` in the current query
-- `indexOnly` - a boolean (default: `false`).
+###### 参数
+- `pathname` - 不带参数的完整路径.
+- `query` - 如果指定, 一个包含键值对的对象在当前参数将被激活 - explicit `undefined` values require the corresponding key to be missing or `undefined` in the current query
+- `indexOnly` - 布尔值 (默认： `false`).
 
-#### Examples
+#### 例子
 ```js
 import { History } from 'react-router'
 
@@ -558,7 +554,7 @@ React.createClass({
 })
 ```
 
-Let's say you are using bootstrap and want to get `active` on those `li` tags for the Tabs:
+假如说你正在使用 bootstrap 并且在这些 `li` 中想得到 `active` :
 
 ```js
 import { Link, History } from 'react-router'
@@ -577,15 +573,15 @@ const Tab = React.createClass({
 <Tab href="foo">Foo</Tab>
 ```
 
-#### But I’m using Classes
-> Notice how we never told you to use ES6 classes? :)
+#### 但我用的是类咋办？
+> 是不是注意到我们从来没有告诉你如何去用 ES6 的类? :)
 
 https://twitter.com/soprano/status/610867662797807617
 
-If you aren't happy using `createClass` for a handful of components in your app for the sake of the `History` mixin, have a couple of options:
+如果你不喜欢用 `createClass` 在创建一些有 `History` mixin 的组件, 试试这2个选择:
 
-- Pass `this.props.history` from your route components down to the components that need it.
-- Use context
+- 通过 `this.props.history` 从你的路由组件放到你需要的组件去.
+- 使用 context
 
 ```js
 import { PropTypes } from 'react-router'
@@ -599,8 +595,8 @@ class MyComponent extends React.Component {
 MyComponent.contextTypes = { history: PropTypes.history }
 ```
 
-- [Make your history a module](/docs/guides/advanced/NavigatingOutsideOfComponents.md)
-- Create a higher order component, we might end up shipping with this and deprecating history, just haven't had the time to think it through all the way.
+- [模快化 history](/docs/guides/advanced/NavigatingOutsideOfComponents.md)
+- 创建一个高阶组件, 我们可以不顾 history 的创建过程.
 
 ```js
 function connectHistory(Component) {
@@ -627,16 +623,16 @@ export default connectHistory(MyComponent)
 
 
 ## RouteContext Mixin
-The RouteContext mixin provides a convenient way for route components to set the route in context. This is needed for routes that render elements that want to use the [Lifecycle mixin](#lifecycle) to prevent transitions.
+RouteContext mixin 提供一个方便的方法在路由组件上下文去设置路由. 这就需要一个想要使用[Lifecycle mixin](#lifecycle)去阻止跳转的渲染元素.
 
-It simply adds `this.context.route` to your component.
+非常简单，只需要添加 `this.context.route` 到你的组件.
 
 
 
-## Utilities
+## 使用工具
 
 ## `useRoutes(createHistory)`
-Returns a new `createHistory` function that may be used to create history objects that know about routing.
+返回一个新的被用来创建 history 对象的 `createHistory` 函数.
 
 - listen((error, nextState) => {})
 - listenBeforeLeavingRoute(route, (nextLocation) => {})
@@ -646,19 +642,19 @@ Returns a new `createHistory` function that may be used to create history object
 
 ## `match(location, cb)`
 
-This function is to be used for server-side rendering. It matches a set of routes to a location, without rendering, and calls a `callback(error, redirectLocation, renderProps)` when it's done.
+此函数用在服务端渲染. It matches a set of routes to a location, without rendering, and calls a `callback(error, redirectLocation, renderProps)` when it's done.
 
-*Note: You probably don't want to use this in a browser. Use the [`history.listen`](https://github.com/rackt/history/blob/master/docs/GettingStarted.md#getting-started) API instead.*
+*注意: 你不应该把它用在浏览器. 使用 [`history.listen`](https://github.com/rackt/history/blob/master/docs/GettingStarted.md#getting-started) API 去取代它.*
 
 
 
 ## `createRoutes(routes)`
 
-Creates and returns an array of routes from the given object which may be a JSX route, a plain object route, or an array of either.
+创建并且返回一个可能由 JSX 路由提供的对象的路由数组. 一个纯的对象路由，或者是数组。
 
-#### params
+#### 参数
 ##### `routes`
-One or many [`Routes`](#route) or [`PlainRoutes`](#plainRoute).
+一个或多个 [`Routes`](#route) 或者 [`PlainRoutes`](#plainRoute).
 
 
 ## PropTypes

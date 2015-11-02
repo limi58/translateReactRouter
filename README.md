@@ -37,13 +37,13 @@ React Router 的主要组件，他可以让你的 UI 和 URL 保持同步。
 
 #### Props
 ##### `children` (必需) 
-一个或多个`Routers` 或 `PlainRoutes`.当 history 改变时，`<Router>`将匹配`Routes`分支，然后渲染它已配置的 components，子路由组件将嵌入父组件。  
+一个或多个 `Routers` 或 `PlainRoutes`.当 history 改变时，`<Router>` 将匹配 `Routes` 分支，然后渲染它已配置的 components，子路由组件将嵌入父组件。  
 
 ##### `routes`
-`children`的别名。  
+`children` 的别名。  
 
 ##### `history`
-用此 history 的时候应该从 `history`包监听。
+用此 history 的时候应该从 `history` 包监听。
 
 ##### `createElement(Component, props)`
 当 router 准备去渲染一个 route 组件分支的时候，它将用这个方法去创建一个元素。当你使用了一些数据抽象的时候，你可能想去控制它去创建元素，比如设置 stores 的订阅，或者从每个组件的 props 传入一些应用程序模块。  
@@ -65,7 +65,7 @@ function createElement(Component, props) {
 ```
 
 ##### `stringifyQuery(queryObject)`
-此方法用于从`Link`s转换为对象或者调用`transitionTo`成一个URL查询字符串。
+此方法用于从 `Link`s 转换为对象或者调用 `transitionTo` 成一个URL查询字符串。
 
 ##### `parseQueryString(queryString)`
 此方法用于转换一个查询字符串成一个传递到 route 组件的 props 的对象。
@@ -84,7 +84,7 @@ function createElement(Component, props) {
 ### Link
 这是主要的方法来允许用户浏览你的应用. `<Link>` 将渲染一个可访问的带有指定的 href 锚标签。
 
-当 route 所链接处被激活时将自动应用`activeClassName`或`activeStyle`.
+当 route 所链接处被激活时将自动应用 `activeClassName` 或 `activeStyle` .
 
 #### Props
 ##### `to`
@@ -152,7 +152,7 @@ function createElement(Component, props) {
 如果左边为 undefined，路由器将试图匹配子路由.
 
 ##### `component`
-当路由匹配 URL 时，单个组件将被渲染。它可以被带有 `this.props.children`的父级路由渲染。
+当路由匹配 URL 时，单个组件将被渲染。它可以被带有 `this.props.children` 的父级路由渲染。
 
 ```js
 const routes = (
